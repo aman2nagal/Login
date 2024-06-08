@@ -21,9 +21,6 @@ function LoginFlowWrapper({ showCountry = true, svg, message, children }) {
           <LogoSVG />
         </div>
       </div> */}
-
-     
-     
     </>
   );
 }
