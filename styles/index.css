@@ -1,0 +1,45 @@
+@import url('../node_modules/@cpm/package-manager/library/index.css');
+
+::-webkit-scrollbar {
+  background-color: rgb(253, 253, 253);
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  /* @apply bg-gray-500 dark:bg-green-400; */
+  background-color: rgb(147, 147, 147);
+  border-radius: 2px;
+}
+.cancelSwal{
+  background-color: white !important;
+  border: 1px black solid !important;
+  color: black !important;
+}
+
+.divBg {
+  position: relative;
+  z-index: 1;
+}
+
+.divBg:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    134deg,
+    rgba(99, 174, 237, 0.4) -1.23%,
+    rgba(134, 193, 243, 0.4) 69.59%,
+    rgba(255, 255, 255, 0.4) 132.08%
+  );
+  opacity: 0.35;
+}
+#RegistrationWrapper2Div{
+  background-repeat: repeat-x;
+  background-size: cover;
+  background-image: url("../public/Building.svg"); 
+  background-color: #F1F9FF;
+}
