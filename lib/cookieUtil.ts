@@ -1,6 +1,5 @@
 import { serialize } from "cookie";
 import { NextApiRequest, NextApiResponse } from "next";
-import logger from "./logger";
 
 interface ICookieUtil {
     getCookie: (request: NextApiRequest, name: string) => string;
@@ -33,7 +32,6 @@ const CookieUtil = (): ICookieUtil => {
             // TODO: closure doesn't regenerate in declaration, setting expiration date explicitly
             cookieOptions.expires = new Date(new Date().getTime() + ttl * 60 * 1000);
 
-            logger.debug("expires: %j, options: %j, default options: %j", cookieOptions.expires, options, cookieOptions);
             response.setHeader("Set-Cookie", serialize(name, String(base64Encoded), hasOptions ? options : cookieOptions));
         }
     };
