@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { Button } from "@cpm/package-manager";
-import PMC1 from "@/components/Login/images/PMC1";
+
 import LoginFlowWrapper from "@/components/Login/common/LoginFlowWrapper";
 import LogoSVG from "@/components/Login/common/LogoSVG";
 import { useDispatch } from "react-redux";
-import { setLoginState } from "@/slices/auth/loginStates";
-import { Router, useRouter } from "next/router";
+
+import { useRouter } from "next/router";
 import * as Yup from "yup";
 import { useLoginMutation } from "@/slices/auth";
 import { Field, Form, Formik } from "formik";
@@ -13,11 +13,7 @@ import LoginSvg from "./images/LoginSvg";
 import { Textbox } from "@cpm/package-manager";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { useEffect, useState } from "react";
-import { useAuth } from "@/contexts/AuthContext";
-import { myToast } from "../PVToast";
-import jwt from "jsonwebtoken";
-import { Cookies, getCookie, setCookie } from "typescript-cookie";
-import axios from "axios";
+
 import Swal from "sweetalert2"
 
 const ValidationSchema = Yup.object().shape({
@@ -25,10 +21,7 @@ const ValidationSchema = Yup.object().shape({
     .email("You've entered an invalid e-mail.")
     .required("Email is required"),
   password: Yup.string().required("Please enter your password"),
-  // .matches(
-  //   /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
-  //   "Password must contain 8-20 characters with uppercase and lowercase, letters, numbers and symbols"
-  // ),
+
 });
 
 const Login = () => {
@@ -44,7 +37,6 @@ const Login = () => {
     const token = data?.authResult?.token;
     if (subscriptionId && roleId && redirectionLink && token) {
 
-      // const urlWithToken = `${redirectionLink}/?token=${token}&subscriptionId=${subscriptionId}&roleId=${roleId}`;
       const urlWithToken = `http://localhost:8008/?token=${token}&subscriptionId=${subscriptionId}&roleId=${roleId}`;
       router.replace(urlWithToken);
     } else { 
@@ -87,23 +79,6 @@ const Login = () => {
       });
   };
 
-  // useEffect(() => {
-  //   const AUTH_TOKEN = getCookie('authToken');
-  //   const REDIRECT_URL = getCookie('redirectUrl');
-  //   if (AUTH_TOKEN) {
-  //     const decodedToken = jwt.decode(AUTH_TOKEN, { complete: true });
-  //     const expirationTime = decodedToken?.payload?.exp;
-  //     if (expirationTime && expirationTime > Math.floor(Date.now() / 1000)) {
-  //       const urlWithToken = `http://localhost:8000/?token=${AUTH_TOKEN}`;
-  //       // const urlWithToken = `${REDIRECT_URL}?token=${AUTH_TOKEN}`;
-  //       router.replace(urlWithToken);
-  //     } else {
-  //       Cookies.remove("authToken")
-  //       Cookies.remove("redirectUrl")
-  //       router.replace(http://localhost:3000/login);
-  //       console.error('Token has expired.');
-  //     }
-  //   }
   // }, [])
 
   return (
