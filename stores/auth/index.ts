@@ -1,40 +1,37 @@
 import { RootState } from "..";
 import {authApi} from "../../slices/auth";
 import { createSlice } from "@reduxjs/toolkit";
-import UseStorage from "../../lib/useStorage"
 //import { clearLocalStorage, setLocalUser } from "../../storage";
 import {AuthUser} from "../type";
 
 
-const INITIAL_STATE: AuthUser & { loginError?: string; } =
-  {};
 
-const storage = UseStorage();
+  const INITIAL_STATE = {
+    auth: false,
+  }
+
+
 
 const authSlice = createSlice({
   name: "auth",
   initialState: INITIAL_STATE,
   reducers: {
-    loadLocalUser: (_state, action) => {
-      return action.payload;
-    },
-    selectProject: (state, action) => {
-      const newState = { ...state, currentProject: action.payload };
-      //setLocalUser(newState);
-      storage.setItem("authuser", JSON.stringify(newState))
-      return newState;
+    
+    login:(state)=>{
+      state.auth = true;
+
     },
     logout: () => {
       //clearLocalStorage();
-      storage.removeItem("authuser")
-      storage.setItem("authuser", JSON.stringify(INITIAL_STATE))
+      localStorage.removeItem("auth")
+      localStorage.setItem("auth", JSON.stringify(INITIAL_STATE))
       return INITIAL_STATE;
     },
   },
   extraReducers: (builder) => {
     builder.addMatcher(authApi.endpoints.login.matchFulfilled, (state, action) => {
       if (action.payload) {
-        storage.setItem("authuser", JSON.stringify(action.payload))
+        localStorage.setItem("authuser", JSON.stringify(action.payload))
         return { ...state, ...action.payload };
       } else {
         return { ...state, loginError: "login-error" };
@@ -43,14 +40,10 @@ const authSlice = createSlice({
   },
 });
 
-export const selectCurrentUser = (
-  state: RootState
-): AuthUser & { loginError?: string } => state.auth;
+export const authstatus = (state: RootState) => state.auth;
 
-export const selectLoginErrorMessage = (state: RootState) =>
-  state.auth.loginError;
 
-export const { loadLocalUser, selectProject, logout } = authSlice.actions;
+export const { logout ,login} = authSlice.actions;
 
 const { reducer } = authSlice;
 

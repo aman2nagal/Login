@@ -1,5 +1,4 @@
 import axios from "axios";
-import { log } from "console";
 
 export default async function handler(req, res) {
   console.log("service-address req: ", req.method);

@@ -1,17 +1,22 @@
-import Document, { DocumentContext, Head, Html, Main, NextScript } from "next/document";
-import { GA_TRACKING_ID } from "../lib/gtag";
+import Document, {
+  DocumentContext,
+  Head,
+  Html,
+  Main,
+  NextScript,
+} from "next/document";
+
 // import 'regenerator-runtime/runtime';
 
 export default class MyDocument extends Document {
-    static async getInitialProps(ctx: DocumentContext) {
-        return await Document.getInitialProps(ctx);
-    }
-    render(): JSX.Element {
-        return (
-            <Html lang="en">
-                <Head>
-                    <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
-                    {/* <script
+  static async getInitialProps(ctx: DocumentContext) {
+    return await Document.getInitialProps(ctx);
+  }
+  render(): JSX.Element {
+    return (
+      <Html lang="en">
+        <Head>
+          {/* <script
                         dangerouslySetInnerHTML={{
                             __html: `
             window.dataLayer = window.dataLayer || [];
@@ -23,12 +28,12 @@ export default class MyDocument extends Document {
           `,
                         }}
                     /> */}
-                </Head>
-                <body className="bg-white dark:bg-slate-900">
-                    <Main />
-                    <NextScript />
-                </body>
-            </Html>
-        );
-    }
+        </Head>
+        <body className="bg-white dark:bg-slate-900">
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
+  }
 }
