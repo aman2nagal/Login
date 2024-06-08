@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import logger from "./logger";
+
 import CookieUtil from "../lib/cookieUtil";
 
 interface IAuthType {
@@ -51,7 +51,6 @@ const UseAuthenticate = (): IAuthType => {
     };
     const isAuthenticated = (req: NextApiRequest): boolean => {
         const cookieValue = getCookie(req, AUTH_COOKIE_NAME);
-        logger.debug("in isAuthenticated - cookie value: %s", cookieValue);
         return !cookieValue;
     };
     return {
