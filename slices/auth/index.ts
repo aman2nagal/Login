@@ -21,22 +21,6 @@ export const authApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["login"],
     }),
-    forgotPassword: builder.mutation<any, { email: string; }>({
-      query: (body) => ({
-        method: "POST",
-        url: "/forgot-password",
-        body,
-      }),
-      invalidatesTags: ["forgotPassword"],
-    }),
-    resetPassword: builder.mutation<AuthUser, { password: string; confirmPassword: string }>({
-      query: (body) => ({
-        method: "POST",
-        url: "/resetpassword",
-        body,
-      }),
-      invalidatesTags: ["resetPassword"],
-    }),
     // login: builder.mutation<AuthUser, { email: string; password: string }>({
     //   query: (body) => ({
     //     method: "POST",
@@ -48,7 +32,7 @@ export const authApi = apiSlice.injectEndpoints({
   }),
 });
 
-export const  { useLoginMutation,useResetPasswordMutation,useForgotPasswordMutation } = authApi
+export const  { useLoginMutation} = authApi
 
 // import { BaseQueryApi } from "@reduxjs/toolkit/dist/query/baseQueryTypes";
 // import { MaybePromise } from "@reduxjs/toolkit/dist/query/tsHelpers";

@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import RightImg from "@/components/Login/common/RightImg";
-import LeftImg from "@/components/Login/common/LeftImg";
+
 import { useDispatch, useSelector } from "react-redux";
 import { authstatus, login } from "@/stores/auth";
 import { Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+
+import LeftImg from "../../img/Saly-2.png";
+import RightImg from "../../img/Saly-3.png";
+import Image from "next/image";
 
 const ValidationSchema = Yup.object().shape({
   email: Yup.string()
@@ -44,7 +47,9 @@ const RegisterationTypes = () => {
     <div className="flex h-screen">
       <div className="w-full md:w-1/2 bg-orange-100 flex items-center justify-center relative">
         <div className="hidden md:inline-block">
-          <LeftImg />
+          {/* <LeftImg /> */}
+          <Image src={RightImg} alt="left" />
+
         </div>
         <div className="absolute top-4 left-4 text-lg font-bold text-orange-400">
           Your Logo
@@ -204,7 +209,7 @@ const RegisterationTypes = () => {
         </div>
       </div>
       <div className="w-1/2 bg-white hidden md:flex items-center justify-center relative">
-        <RightImg />
+        <Image src={LeftImg} alt="left" />
       </div>
     </div>
   );
