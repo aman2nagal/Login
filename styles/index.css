@@ -20,7 +20,7 @@ body{
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     /* font-family: "Inter", sans-serif; */
-    @apply font-poppins;
+    @apply font-poppins; 
 }
 
 @layer components {
